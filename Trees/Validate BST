@@ -1,0 +1,15 @@
+class Solution {
+public:
+    
+    bool fun(TreeNode* root , TreeNode* mn , TreeNode* mx){
+        if(root == NULL) return true ;
+        
+        if(root->val >=mx->val || root->val <= mn->val) return false ;
+        
+        return fun(root->left , mn , root) && fun(root->right , root ,mx)  ;
+    }
+    
+    bool isValidBST(TreeNode* root) {
+        return fun(root , NULL , NULL) ;
+    }
+};
