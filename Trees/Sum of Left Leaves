@@ -1,0 +1,19 @@
+// we use a dfs approach to check if a node is a left node and a leaf node
+
+class Solution {
+public:
+    
+    int sum(TreeNode* root , bool left){
+        if(root == NULL) return 0 ;
+        
+        int x = 0 ;
+        if(root->left == NULL && root->right == NULL && left) x = root->val ;
+        
+        return x + sum(root->left , true) + sum(root->right , false) ;
+    }
+    
+    int sumOfLeftLeaves(TreeNode* root) {
+        bool left = false ;
+        return sum(root , left) ;
+    }
+};
