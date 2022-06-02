@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numTrees(int n) {
+        vector<int> t(n +1 , -1) ;
+        
+        if(n == 0 ||n == 1) return 1 ;
+        
+        t[0] = t[1] = 1 ;
+        t[2] = 2 ;
+        
+        for(int i = 3 ; i <= n ; i++){
+            int low = 1 , high = i ;
+            int sum = 0 ;
+            
+            for(int j = low ; j <= high ; j++){
+                sum = sum + (t[j - low]*t[high - j]) ;
+            }
+            
+            t[i] = sum ;
+        }
+        return t[n] ;
+    }
+};
