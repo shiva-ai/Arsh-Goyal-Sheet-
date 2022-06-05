@@ -1,0 +1,18 @@
+class Solution {
+public:
+    
+    int t[47] ;
+    
+    int fun(int i , int n){
+        if(i == n) return 1 ;
+        if(i > n) return 0 ;
+        
+        if(t[i]) return t[i] ;
+        
+        return t[i] = fun(i+1 , n) + fun(i+2 , n) ;
+    }
+    
+    int climbStairs(int n) {
+        return fun(0 , n) ;
+    }
+};
