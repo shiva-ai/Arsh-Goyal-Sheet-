@@ -1,0 +1,21 @@
+class Solution {
+public:
+    
+    int dp[10005][14] ;
+    
+    int fun(vector<int>& coins , int amount , int n){
+        if(amount == 0 || n == 0) return (amount == 0) ? 0 : INT_MAX - 1 ;
+        
+        if(dp[amount][n]) return dp[amount][n] ; 
+        
+        if(coins[n-1] > amount) return dp[amount][n] = fun(coins , amount , n -1) ;
+        
+        else 
+        return dp[amount][n] = min(fun(coins , amount , n-1) , 1+fun(coins , amount - coins[n-1] , n)) ;
+    }
+    
+    int coinChange(vector<int>& coins, int amount) {
+        int mincoins = fun(coins , amount , coins.size()  ) ;
+        return mincoins == INT_MAX - 1 ? -1 : mincoins ;
+    }
+};
